@@ -1,0 +1,34 @@
+.champinos{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.champions-img{
+    margin: 100px;
+    cursor: pointer;
+    -webkit-filter: brightness(100%);
+    -moz-filter: brightness(100%);
+    filter: brightness(100%);
+    transform: scale(2);
+}
+.champions-img:hover{
+    border-color: #f1fc1e;
+    box-shadow: 0 0 36px 10px rgba(190, 231, 7, 0.6);
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    filter: brightness(50%);
+}
+.champ:hover p{
+    visibility: visible;
+
+}
+.champions-name{
+    font-size: 22px;
+    font-weight: 700;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(0, -800%);
+}
+
+  
