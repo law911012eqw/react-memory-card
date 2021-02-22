@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Champions from './Champions'
 import './Main.css';
@@ -7,16 +7,11 @@ function Main() {
     // true == visible, otherwise its false
     const modalRef = React.useRef();
     const [clickToStart, setClickToStart] = React.useState(true);
-    useEffect(() => {
-        modalRef.current.onclick = () => {
-            setClickToStart(!clickToStart);
-        }
-    })
-    
     return (
         <div className="main">
             {clickToStart ?
                 <div
+                    onClick={() => setClickToStart(!clickToStart)}
                     ref={modalRef}
                     className="modal-bg">
                     <div className="modal-start">
