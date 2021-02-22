@@ -6,35 +6,52 @@ const Scores = () => {
     const [score, setScore] = useState(0);
     useEffect(() => {
         console.log('Side effects on score');
-        document.addEventListener('click', function (e) {
+        const champs = document.querySelectorAll('.champions-img');
+        champs.forEach((el) => {
+            el.addEventListener('click', incrementScorePerUniqueClick);
+        });
+        function incrementScorePerUniqueClick(e) {
             const clickedElem = e.target;
+            console.log('----------------------------------------------');
+            console.log(clickedElem);
+            console.log(clickedElem.id);
             if (clickedElem.classList.contains('not-clicked')) {
                 setScore(score + 1);
             } else if (clickedElem.classList.contains('clicked')) {
                 console.log('reset score to zero');
                 setScore(0);
             }
-        });
-    })
-
+        }
+        return () => {
+            champs.forEach((el) => {
+                el.removeEventListener('click', incrementScorePerUniqueClick);
+            });
+        };
+    }, [score])
     const [highscore, setHighscore] = useState(0);
+
     //get the high score from the local storage once
     useEffect(() => {
         console.log('Get local high score');
-        if(localStorage.getItem('storageHighScore') !== null){
+        if (localStorage.getItem('storageHighScore') !== null) {
             const savedHighscore = localStorage.getItem('storageHighScore');
             setHighscore(savedHighscore);
         }
     }, [])
-    //Update highscore if score is higher than high score
-    useEffect(() => {
-        console.log(`Updated Score: ${score}`);
+
+    const updateHighScore = () => {
         if (score > highscore) {
             setHighscore(score);
             localStorage.setItem('storageHighScore', score);
             console.log(`Updated High-Score: ${highscore}`);
         }
+    }
+    //Update highscore if score is higher than high score
+    useEffect(() => {
+        console.log(`Updated Score: ${score}`);
+        updateHighScore();
     }, [score, highscore])
+
     return (
         <div className="scores">
             <div className="score">

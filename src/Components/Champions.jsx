@@ -48,7 +48,6 @@ const Champions = () => {
         getChampionsClassName.forEach((c, i) => {
             c.onclick = () => {
                 const name = champs[i].name;
-                console.log('----------------------------------------------');
                 if (isChampClickedObj[i].isClicked) {
                     setChamps(shuffleArray());
                 } else {
@@ -81,22 +80,22 @@ const Champions = () => {
                 champs[currentIndex] = champs[randomIndex];
                 champs[randomIndex] = temporaryValue;
             }
-            console.log(score);
             if (score === 0) {
                 console.log('reset everything');
             isChampClickedObj.map(o =>
                     o.isClicked === true ? { ...o, isClicked: false } : o
                 );
-            } else if (score > 20 && maxIndex !== 18) {
+            } else if ((score > 20 && score < 40)  && maxIndex !== 18) {
                 maxIndex += 9;
-            } else if (score > 40 && maxIndex !== 27) {
-                maxIndex += 9;
+            } else if (score >= 40 && maxIndex !== 27) {
+                maxIndex += 18;
             }
             for (let i = 0; i < maxIndex; i++) {
                 //increases the number of champions based on specific checkpoint of scores
                 //a difficulty aspect of this app
                 shuffledChamps.push(champs[i]);
             }
+            console.log(maxIndex);
             //generateChamps(shuffledChamps,maxIndex);
             return shuffledChamps;
         }

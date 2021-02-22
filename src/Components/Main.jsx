@@ -7,11 +7,15 @@ function Main() {
     // true == visible, otherwise its false
     const modalRef = React.useRef();
     const [clickToStart, setClickToStart] = React.useState(true);
+    const onClick = () => {
+        setClickToStart(!clickToStart)
+        document.body.style.overflowY = 'auto';
+    }
     return (
         <div className="main">
             {clickToStart ?
                 <div
-                    onClick={() => setClickToStart(!clickToStart)}
+                    onClick={onClick}
                     ref={modalRef}
                     className="modal-bg">
                     <div className="modal-start">
@@ -19,7 +23,6 @@ function Main() {
                     </div>
                 </div> 
                 : null}
-
             <Champions />
         </div>
     );
