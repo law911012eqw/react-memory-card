@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import './Scores.css'
 
-
 const Scores = () => {
     const [score, setScore] = useState(0);
     useEffect(() => {
