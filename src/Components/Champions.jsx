@@ -48,6 +48,9 @@ const Champions = () => {
                 const shuffle = shuffleArray();
                 setChamps(shuffle);
                 const name = champs[i].name;
+                console.log(champs[i]);
+                console.log(name);
+                console.log(isChampClickedObj);
                 //The content of className is clicked when the boolean is true
                 //The side effects resets the entire object back to zero
                 if (champs[i].isClicked) {
@@ -57,10 +60,13 @@ const Champions = () => {
                     );
                     setIsChampClickedObj(resetChamps);
                 } else {
+
                     const toggleClicked = isChampClickedObj.map(o =>
                         o.name === name ? { ...o, isClicked: true } : o
                     );
                     setIsChampClickedObj(toggleClicked);
+                    console.log(isChampClickedObj);
+                    console.log(toggleClicked);
                 }
             }
         })
@@ -69,9 +75,8 @@ const Champions = () => {
         function shuffleArray() {
             const shuffledChamps = []; //a temporary array
             const champs = isChampClickedObj; //ref to objects of champions
-            const score = document.querySelector('.score-num').textContent;
             let currentIndex = champs.length, temporaryValue, randomIndex;
-            let maxIndex = 9;
+            let maxIndex = 45;
 
             while (0 !== currentIndex) {
 
@@ -82,13 +87,6 @@ const Champions = () => {
                 temporaryValue = champs[currentIndex];
                 champs[currentIndex] = champs[randomIndex];
                 champs[randomIndex] = temporaryValue;
-            }
-            if ((score > 20 && score < 40) && maxIndex !== 18) {
-                maxIndex += 9;
-            } else if (score >= 40 && maxIndex !== 27) {
-                maxIndex += 18;
-            } else if (score >= 70 && maxIndex !== 54) {
-                maxIndex += 45;
             }
             for (let i = 0; i < maxIndex; i++) {
                 //increases the number of champions based on specific checkpoint of scores
