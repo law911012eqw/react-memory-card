@@ -34,8 +34,6 @@ const Champions = () => {
     //states to be frequently updated through the method of elements shuffling
     const [champs, setChamps] = useState(isChampClickedObj);
     useEffect(() => {
-
-        console.log('Shuffled champions');
         //DOM instances of all champion images
         const getChampionsClassName = [...document.getElementsByClassName('champions-img')];
         const modal = document.querySelector('.modal-bg');
@@ -52,20 +50,17 @@ const Champions = () => {
                 const name = champs[i].name;
                 //The content of className is clicked when the boolean is true
                 //The side effects resets the entire object back to zero
-                if (isChampClickedObj[i].isClicked) {
-                    console.log('reset champs');
+                if (champs[i].isClicked) {
+
                     const resetChamps = isChampClickedObj.map(o =>
                         o.isClicked === true ? { ...o, isClicked: false } : o
                     );
                     setIsChampClickedObj(resetChamps);
                 } else {
-                    console.log(champs[i]);
-                    console.log(name);
                     const toggleClicked = isChampClickedObj.map(o =>
                         o.name === name ? { ...o, isClicked: true } : o
                     );
                     setIsChampClickedObj(toggleClicked);
-                    console.log(toggleClicked);
                 }
             }
         })
@@ -105,7 +100,6 @@ const Champions = () => {
         }
     }, [champs, isChampClickedObj])
     let iterableChamps = champs;
-    console.log(champs);
     const iterationChamps = iterableChamps.map((c, i) => {
         return (
             <div key={i} className="champ">

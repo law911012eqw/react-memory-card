@@ -14,14 +14,10 @@ const Scores = () => {
         });
         function incrementScorePerUniqueClick(e) {
             const clickedElem = e.target;
-            console.log('----------------------------------------------');
-            console.log(clickedElem);
             if (clickedElem.classList.contains('not-clicked')) {
                 setScore(tempScoreRef.current += 1);
-                console.log(`score is ${tempScoreRef.current}`);
             } else if (clickedElem.classList.contains('clicked')) {
                 setScore(tempScoreRef.current = 0);
-                console.log(`reset score to ${tempScore}`);
             }
         }
         //In my own understanding
@@ -36,7 +32,6 @@ const Scores = () => {
 
     //get the high score from the local storage once
     useEffect(() => {
-        console.log('Get local high score');
         if (localStorage.getItem('storageHighScore') !== null) {
             const savedHighscore = localStorage.getItem('storageHighScore');
             setHighscore(savedHighscore);
@@ -45,11 +40,9 @@ const Scores = () => {
 
     //Update highscore if score is higher than high score
     useEffect(() => {
-        console.log(`Updated Score: ${score}`);
         if (score > highscore) {
             setHighscore(score);
             localStorage.setItem('storageHighScore', score);
-            console.log(`Updated High-Score: ${highscore}`);
         }
     }, [score, highscore])
 
