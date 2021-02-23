@@ -16,7 +16,8 @@ A simple game to test your memorization skills using League of Legends materials
 Identified Options: Fetching json or use assets from the files.
 
 Optional features:
-* Adding difficulty (Timer) - Maybe
+* Simple instructions
+* Adding difficulty (Timer) - Unnecessary
 * Different images (Champion Passive) - Unnecessary
 
 

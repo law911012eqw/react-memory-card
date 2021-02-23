@@ -15,9 +15,8 @@ html{
 }
 .modal-start{
     pointer-events: none;
-    position: absolute;
-    top: 30%;
-    left: 34%;
+    margin: 10% auto;
+
     font-size: 10em;
     z-index: 7px;
 }

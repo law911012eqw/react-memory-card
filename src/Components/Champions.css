@@ -5,12 +5,12 @@
     width: 100%;
 }
 .champions-img{
-    margin: 100px;
+    margin: 55px 50px;
     cursor: pointer;
     -webkit-filter: brightness(100%);
     -moz-filter: brightness(100%);
     filter: brightness(100%);
-    transform: scale(2);
+    transform: scale(1.5);
 }
 .champions-img:hover{
     border-color: #f1fc1e;
@@ -28,7 +28,7 @@
     font-weight: 700;
     visibility: hidden;
     pointer-events: none;
-    transform: translate(0, -800%);
+    transform: translate(0, -600%);
 }
 
   

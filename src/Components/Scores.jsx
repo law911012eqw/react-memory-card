@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import './Scores.css'
 
 const Scores = () => {
-    const [score, setScore] = useState(0);
+    //a naive approach of using useRef
+    let tempScore = 0;
+    let tempScoreRef = React.useRef(tempScore);
+    const [score, setScore] = useState(tempScore);
     useEffect(() => {
-        console.log('Side effects on score');
         const champs = document.querySelectorAll('.champions-img');
         champs.forEach((el) => {
             el.addEventListener('click', incrementScorePerUniqueClick);
@@ -14,20 +16,22 @@ const Scores = () => {
             const clickedElem = e.target;
             console.log('----------------------------------------------');
             console.log(clickedElem);
-            console.log(clickedElem.id);
             if (clickedElem.classList.contains('not-clicked')) {
-                setScore(score + 1);
+                setScore(tempScoreRef.current += 1);
+                console.log(`score is ${tempScoreRef.current}`);
             } else if (clickedElem.classList.contains('clicked')) {
-                console.log('reset score to zero');
-                setScore(0);
+                setScore(tempScoreRef.current = 0);
+                console.log(`reset score to ${tempScore}`);
             }
         }
+        //In my own understanding
+        //empty array dependency due to unmounting the created eventlistener after side effects is done
         return () => {
             champs.forEach((el) => {
                 el.removeEventListener('click', incrementScorePerUniqueClick);
             });
         };
-    }, [score])
+    }, []) 
     const [highscore, setHighscore] = useState(0);
 
     //get the high score from the local storage once
@@ -39,17 +43,14 @@ const Scores = () => {
         }
     }, [])
 
-    const updateHighScore = () => {
+    //Update highscore if score is higher than high score
+    useEffect(() => {
+        console.log(`Updated Score: ${score}`);
         if (score > highscore) {
             setHighscore(score);
             localStorage.setItem('storageHighScore', score);
             console.log(`Updated High-Score: ${highscore}`);
         }
-    }
-    //Update highscore if score is higher than high score
-    useEffect(() => {
-        console.log(`Updated Score: ${score}`);
-        updateHighScore();
     }, [score, highscore])
 
     return (

@@ -32,31 +32,39 @@ const Champions = () => {
     const [isChampClickedObj, setIsChampClickedObj] = useState(championsArray);
 
     //states to be frequently updated through the method of elements shuffling
-    let [champs, setChamps] = useState(isChampClickedObj);
+    const [champs, setChamps] = useState(isChampClickedObj);
     useEffect(() => {
+
         console.log('Shuffled champions');
-        console.log(champs);
         //DOM instances of all champion images
         const getChampionsClassName = [...document.getElementsByClassName('champions-img')];
         const modal = document.querySelector('.modal-bg');
-
-        if(modal !== null){
+        //Initially shuffle the champions
+        if (modal !== null) {
             modal.onclick = () => {
                 setChamps(shuffleArray());
             }
         }
         getChampionsClassName.forEach((c, i) => {
             c.onclick = () => {
+                const shuffle = shuffleArray();
+                setChamps(shuffle);
                 const name = champs[i].name;
+                //The content of className is clicked when the boolean is true
+                //The side effects resets the entire object back to zero
                 if (isChampClickedObj[i].isClicked) {
-                    setChamps(shuffleArray());
+                    console.log('reset champs');
+                    const resetChamps = isChampClickedObj.map(o =>
+                        o.isClicked === true ? { ...o, isClicked: false } : o
+                    );
+                    setIsChampClickedObj(resetChamps);
                 } else {
+                    console.log(champs[i]);
                     console.log(name);
                     const toggleClicked = isChampClickedObj.map(o =>
                         o.name === name ? { ...o, isClicked: true } : o
                     );
                     setIsChampClickedObj(toggleClicked);
-                    setChamps(shuffleArray());
                     console.log(toggleClicked);
                 }
             }
@@ -80,26 +88,22 @@ const Champions = () => {
                 champs[currentIndex] = champs[randomIndex];
                 champs[randomIndex] = temporaryValue;
             }
-            if (score === 0) {
-                console.log('reset everything');
-            isChampClickedObj.map(o =>
-                    o.isClicked === true ? { ...o, isClicked: false } : o
-                );
-            } else if ((score > 20 && score < 40)  && maxIndex !== 18) {
+            if ((score > 20 && score < 40) && maxIndex !== 18) {
                 maxIndex += 9;
             } else if (score >= 40 && maxIndex !== 27) {
                 maxIndex += 18;
+            } else if (score >= 70 && maxIndex !== 54) {
+                maxIndex += 45;
             }
             for (let i = 0; i < maxIndex; i++) {
                 //increases the number of champions based on specific checkpoint of scores
                 //a difficulty aspect of this app
                 shuffledChamps.push(champs[i]);
             }
-            console.log(maxIndex);
             //generateChamps(shuffledChamps,maxIndex);
             return shuffledChamps;
         }
-    }, [isChampClickedObj, champs])
+    }, [champs, isChampClickedObj])
     let iterableChamps = champs;
     console.log(champs);
     const iterationChamps = iterableChamps.map((c, i) => {
