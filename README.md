@@ -1,5 +1,6 @@
 # React-Memory-Game
 A simple game to test your memorization skills using League of Legends materials.
+Mini update: The UI is now available in mobile!
 
 ![ss](https://user-images.githubusercontent.com/73290979/108662853-3999cb80-749d-11eb-8578-6c059ae903ec.png)
 ## Pseudocode
@@ -16,7 +17,7 @@ A simple game to test your memorization skills using League of Legends materials
 Identified Options: Fetching json or use assets from the files.
 
 Optional features:
-* Simple instructions
+* Simple instructions (Added)
 * Adding difficulty (Timer) - Unnecessary
 * Different images (Champion Passive) - Unnecessary
 
