@@ -1,38 +1,42 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@media (min-width: 1200px){
+  .champions-img{
+      transform: scale(1.5);
+      margin: 55px 50px;
+  }
+  .champions-name{
+    font-weight: 700;
+    transform: translate(0, -800%);
+  }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (min-width: 750px){
+  .champions-img{
+      transform: scale(1.0);
+      margin: 20px 15px;
+  }
+  .champions-name{
+    font-weight: 700;
+    transform: translate(0, -550%);
+  }
+}
+@media (max-width: 749px){
+  .champions{
+      margin-top: 50px;
+  }
+  .champions-img{
+      transform: scale(0.5);
+      margin: -30px -20px;
+  }
+  .champions-name{
+    font-weight: 700;
+    transform: translate(0, -500%);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (max-height: 500px) and (max-width: 812px) {
+  .header{
+    height: 25vh;
   }
 }

@@ -12,11 +12,11 @@ html{
     height: 100%;
     background: rgba(1,1,1,0.5);
     z-index: 5;
+    font-size: 12px;
 }
 .modal-start{
     pointer-events: none;
     margin: 10% auto;
-
-    font-size: 10em;
+    font-size: clamp(10em,10em, 12em);
     z-index: 7px;
 }

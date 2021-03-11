@@ -5,13 +5,14 @@
     height: 15vh;
     background: rgb(14, 14, 14);
     z-index: 10;
+    font-size: 12px;
 }
 .instruction{
-    width: 300px;
+    align-self: center;
+    width: 40vw;
     margin: 5px 0;
+    font-size: clamp(0.7rem, 1vw, 2rem); 
     padding: 0 24px;
-    border-left: 1px solid rgba(255,255,255,0.2);
-    border-right: 1px solid rgba(255,255,255, 0.2);
 }
 h4{
     color: rgb(112, 113, 219);

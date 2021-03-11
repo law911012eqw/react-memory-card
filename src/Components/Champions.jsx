@@ -48,9 +48,6 @@ const Champions = () => {
                 const shuffle = shuffleArray();
                 setChamps(shuffle);
                 const name = champs[i].name;
-                console.log(champs[i]);
-                console.log(name);
-                console.log(isChampClickedObj);
                 //The content of className is clicked when the boolean is true
                 //The side effects resets the entire object back to zero
                 if (champs[i].isClicked) {
@@ -65,8 +62,6 @@ const Champions = () => {
                         o.name === name ? { ...o, isClicked: true } : o
                     );
                     setIsChampClickedObj(toggleClicked);
-                    console.log(isChampClickedObj);
-                    console.log(toggleClicked);
                 }
             }
         })
